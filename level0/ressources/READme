@@ -1,0 +1,1 @@
+cmp eax avec 423 grace a gdb en arg
