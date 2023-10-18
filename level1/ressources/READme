@@ -1,8 +1,8 @@
-python -c 'print "B"*80' > /tmp/payload 
+ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789
 
 gdb level1
 
-r < /tmp/payload puis trouevr la bonne valeur pour injecter le payload 
+r avec le pattern
 
 la bonne valeur est 76
 

