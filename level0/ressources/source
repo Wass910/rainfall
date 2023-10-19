@@ -1,0 +1,31 @@
+#include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <sys/types.h>
+
+int main(int argc, char **argv)
+{
+    int var;
+    char *dup_str;
+    gid_t gid;
+    uid_t uid;
+
+    var = atoi(argv[1]);
+    if (var == 423)  
+    {
+        dup_str = strdup("/bin/sh"); 
+        gid = getegid();
+        uid = geteuid();
+
+        setresgid(gid, gid, gid);
+        setresuid(uid, uid, uid);
+
+        execv("/bin/sh", &dup_str);  
+    }
+    else
+    {
+        printf("no !");
+    }
+
+    return 0;
+}
